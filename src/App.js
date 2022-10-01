@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { useState } from "react";
 import Axios from "axios";
+import axios from "axios";
+
 
 function App() {
   const [name, setName] = useState("");
@@ -20,9 +22,27 @@ function App() {
       gender: gender,
       surname: surname,
     }).then(() => {
-      console.log("success");
+      setImpiegatiList([
+        ...impiegatiList,
+        {
+          name: name,
+          age: age,
+          country: country,
+          gender: gender,
+          surname: surname,
+        },
+      ]);
     });
   };
+
+
+  const eliminaImpiegato = (id) => {
+  
+    console.log(id)
+    if(window.confirm('are u sure?')){
+      axios.delete(`http://localhost:3001/remove/${id}`);
+    }
+  }
 
   const getImpiegati = () => {
     Axios.get("http://localhost:3001/impiegati").then((response) => {
@@ -95,20 +115,40 @@ function App() {
         </div>
       </div>
       <hr />
-      <button onClick={getImpiegati} className="btn btn-danger">
-        Mostra impiegato
-      </button>
-      {impiegatiList.map((el, key) => {
-        return (
-          <div className="card">
-            <p> {el.name} </p>
-            <p>{el.surname}</p>
-            <p>{el.age}</p>
-            <p>{el.country}</p>
-            <p>{el.gender}</p>
-          </div>
-        );
-      })}
+
+      <div className="container text-center">
+        <button onClick={getImpiegati} className="btn btn-danger">
+          Mostra impiegato
+        </button>
+        <div className="row justify-content-center">
+          {impiegatiList.map((el, key) => {
+            return (
+              <div className="col-3 m-3">
+                <p>id = {el.id} </p>
+                <div key={key} class="card">
+                  <img class="card-img-top" src="" alt="Card image cap" />
+                  <div class="card-body">
+                    <h5 class="card-title fs-1">
+                      <p> {el.name} </p>
+                    </h5>
+
+                    <p className="fs-2">{el.surname}</p>
+                    <p>{el.age}</p>
+                    <p>{el.country}</p>
+                    <p>{el.gender}</p>
+                    <button
+                      onClick={() => eliminaImpiegato(el.id)}
+                      class="btn btn-primary"
+                    >
+                      Elimina
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
