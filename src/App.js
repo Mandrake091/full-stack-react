@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import NewEmployee from "./pages/NewEmployee";
 import Axios from "axios";
 import AllEmployee from "./pages/AllEmployee";
+import UpdateEmployee from "./pages/UpdateEmployee";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<NewEmployee />} />
         <Route path="/all" element={<AllEmployee />} />
+        <Route path="/update/:id" element={<UpdateEmployee />} />
       </Routes>
     </>
   );

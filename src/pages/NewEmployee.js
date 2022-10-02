@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Axios from "axios";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function NewEmployee() {
   const [id, setId] = useState("");
@@ -36,19 +37,9 @@ function NewEmployee() {
     });
   };
 
-  const eliminaImpiegato = (id) => {
-    console.log(id);
-    if (window.confirm("Are u sure?")) {
-      axios.delete(`http://localhost:3001/remove/${id}`);
-      getImpiegati();
-    }
-  };
 
-  const getImpiegati = () => {
-    Axios.get("http://localhost:3001/impiegati").then((response) => {
-      setImpiegatiList(response.data);
-    });
-  };
+
+ 
   return (
     <div className="row mt-5 justify-content-center">
       <div className="col-6">
@@ -106,10 +97,16 @@ function NewEmployee() {
           className="form-control"
           type="text"
         />
-
-        <button onClick={aggiungiImpiegato} className="btn btn-success mt-5">
-          Aggiungi
-        </button>
+        <div className="row justify-content-between pt-5">
+          <button onClick={aggiungiImpiegato} className="btn btn-success col-3">
+            Aggiungi
+          </button>
+          <Link to='/all' className="col-3">
+            <button className="btn btn-danger">
+              Tutti gli impiegati
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
