@@ -27,17 +27,15 @@ useEffect(() =>{
     <div className="container text-center">
       <div className="row justify-content-start mt-3">
         <Link className="col-3" to="/">
-          <button className="btn btn-primary">
-            Torna indietro
-          </button>
+          <button className="btn btn-primary">Torna indietro</button>
         </Link>
       </div>
       <div className="row justify-content-between mx-auto">
         {impiegatiList.map((el, key) => {
           return (
-            <div className="col-3 m-3">
+            <div key={el.id} className="col-3 m-3">
               <p>id = {el.id} </p>
-              <div key={key} class="card">
+              <div key={key} className="card">
                 <img className="card-img-top" src="" alt="Card image cap" />
                 <div className="card-body">
                   <h5 className="card-title fs-1">
@@ -51,14 +49,12 @@ useEffect(() =>{
                   <div className="row g-3 align-items-center justify-content-center">
                     <button
                       onClick={() => eliminaImpiegato(el.id)}
-                      class="btn btn-primary col-8"
+                      className="btn btn-primary col-8"
                     >
                       Elimina
                     </button>
                     <Link to={`/update/${el.id}`}>
-                      <button class="btn btn-secondary col-8">
-                        Modifica
-                      </button>
+                      <button className="btn btn-secondary col-8">Modifica</button>
                     </Link>
                   </div>
                 </div>
