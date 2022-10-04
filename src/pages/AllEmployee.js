@@ -14,7 +14,8 @@ function AllEmployee() {
   };
 
   const getImpiegati = () => {
-    Axios.get("http://localhost:3001/impiegati").then((response) => {
+    Axios.get("/utenti").then((response) => {
+      console.log(response);
       setImpiegatiList(response.data);
     });
   };
@@ -39,7 +40,7 @@ function AllEmployee() {
             <div key={el.id} className="col-3 m-3">
               <p>id = {el.id} </p>
               <div key={key} className="card">
-                <img className="card-img-top" src={`../../../server/uploads/${el.image}`} alt="" />
+                <img className="card-img-top" src={`./uploads/${el.image}`} alt="" />
                 <div className="card-body">
                   <h5 className="card-title fs-1">
                     <p> {el.name} </p>
