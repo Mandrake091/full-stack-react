@@ -24,12 +24,9 @@ function AllEmployee() {
     getImpiegati();
   }, []);
 
-
-
-
   return (
     <div className="container text-center">
-      <div className="row justify-content-start mt-3">
+      <div className="row justify-content-center mt-3">
         <Link className="col-3" to="/">
           <button className="btn btn-primary">Torna indietro</button>
         </Link>
@@ -37,10 +34,14 @@ function AllEmployee() {
       <div className="row justify-content-between mx-auto">
         {impiegatiList.map((el, key) => {
           return (
-            <div key={el.id} className="col-3 m-3">
-              <p>id = {el.id} </p>
-              <div key={key} className="card">
-                <img className="card-img-top" src={`./uploads/${el.image}`} alt="" />
+            <div key={el.id} className="col-4 m-3">
+              <div key={key} style={{ width: "300px" }} className="card">
+                <img
+                  className="card-img-top"
+                  style={{ width: "100%", height: '150px', objectFit: 'cover' }}
+                  src={`./uploads/${el.image}`}
+                  alt=""
+                />
                 <div className="card-body">
                   <h5 className="card-title fs-1">
                     <p> {el.name} </p>
