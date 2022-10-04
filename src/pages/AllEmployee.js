@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Axios from "axios";
 
@@ -19,9 +19,12 @@ function AllEmployee() {
     });
   };
 
-useEffect(() =>{
-  getImpiegati()
-},[]);
+  useEffect(() => {
+    getImpiegati();
+  }, []);
+
+
+
 
   return (
     <div className="container text-center">
@@ -36,7 +39,7 @@ useEffect(() =>{
             <div key={el.id} className="col-3 m-3">
               <p>id = {el.id} </p>
               <div key={key} className="card">
-                <img className="card-img-top" src="" alt="Card image cap" />
+                <img className="card-img-top" src={`../../../server/uploads/${el.image}`} alt="" />
                 <div className="card-body">
                   <h5 className="card-title fs-1">
                     <p> {el.name} </p>
@@ -54,7 +57,9 @@ useEffect(() =>{
                       Elimina
                     </button>
                     <Link to={`/update/${el.id}`}>
-                      <button className="btn btn-secondary col-8">Modifica</button>
+                      <button className="btn btn-secondary col-8">
+                        Modifica
+                      </button>
                     </Link>
                   </div>
                 </div>
